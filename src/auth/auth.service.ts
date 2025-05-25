@@ -99,11 +99,14 @@ export class AuthService {
     }
   }
 
-  async logout(userId: string): Promise<void> {
+  async logout(userId: string): Promise<{ message: string }> {
     // Remove refresh token
     await this.usersRepository.update(userId, {
       refreshToken: null as unknown as string,
     });
+    return {
+      message: 'Logout successful',
+    };
   }
 
   private async generateTokens(user: User): Promise<TokensDto> {

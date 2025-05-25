@@ -49,7 +49,7 @@ export class AuthController {
   @UseGuards(JwtAccessGuard)
   @Post('logout')
   @HttpCode(HttpStatus.OK)
-  async logout(@Request() req: RequestWithUser): Promise<void> {
+  async logout(@Request() req: RequestWithUser): Promise<{ message: string }> {
     return this.authService.logout(req.user.id);
   }
 }
